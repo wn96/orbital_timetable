@@ -24,7 +24,11 @@ All commands that are available for this chatbot are listed below:
 
 `/getweek` - Returns the week number of the semester
 
-`/start` - This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.
+`/start` - Simple text to inform users of the bot functionalities.
+
+Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's funds to last 2.5 months, which will hopefully last until splashdown. 
+
+
 
 # Nice Pictures
 
