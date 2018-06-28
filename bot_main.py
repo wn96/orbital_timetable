@@ -31,8 +31,8 @@ def check_invalid(url):
     return expand_url(url) == "http://modsn.us" or expand_url(url) == "http://modsn.us/"
 
 def handle_updates(updates):
-    for update in updates["result"]:
-        try:
+    try:
+        for update in updates["result"]:
             if "message" not in update:
                 continue
             if "chat" not in update["message"]:
@@ -147,7 +147,7 @@ def handle_updates(updates):
                     send_message("`Currently week " + str(week) + "`" ,chat)
                 else:
                     send_message("`Currently " + week + "`" ,chat)
-        except Exception as e:
+    except Exception as e:
             send_message("An error has occured! Please try again. If the problem persist, please email support at weineng.a@gmail.com!",chat)
             print("ERROR has occured: ", e)
             print(str(update).encode("utf-8", errors='ignore'))
