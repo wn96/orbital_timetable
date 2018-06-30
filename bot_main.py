@@ -39,6 +39,7 @@ def handle_updates(updates):
                 continue
             if "text" not in update["message"]:
                 continue
+                                    
             chat = update["message"]["chat"]["id"]
             text = update["message"]["text"]
             items = db.get_items(chat)  ##
@@ -64,7 +65,7 @@ def handle_updates(updates):
                 else:
                     #Adding from here
                     item = text[5:]
-                    db.add_item(item, chat)
+                    db.add_item(item, chat)  
                     send_message("Timetable has been added", chat)
             elif text == "/gay":
                 send_message("test", chat, item)
@@ -80,7 +81,7 @@ def handle_updates(updates):
                         stuff += str(counter) + ". " + i + "\n"
                         counter += 1
                     send_message(stuff,chat)
-
+                    
 
             elif text == "/clear":
                 items=db.get_items(chat) ##
@@ -92,7 +93,7 @@ def handle_updates(updates):
                     send_message("All timetables has been removed!", chat)
 
             elif text[:4] == "/del":
-                items=db.get_items(chat)
+                items=db.get_items(chat) 
                 todel = text[5:]
                 if text == "/del":
                     send_message("Please type '/del <NUSMODS link>' to delete the timetable.",chat)
@@ -104,7 +105,7 @@ def handle_updates(updates):
                 else:
                     send_message("This timetable has not been added yet", chat)
 
-
+                    
             elif text[:5] == "/week":
                 week = text[6:]
                 if text == "/week":
@@ -122,8 +123,8 @@ def handle_updates(updates):
                     items=db.get_items(chat)
                     if len(items) == 0:
                         send_message("No time-table added!",chat)
-                        continue
-
+                        continue 
+                    
                     result = None
                     for i in items:
                         result = compare_tt(result, get_freetime(i, week))
@@ -139,7 +140,7 @@ def handle_updates(updates):
                     send_message("`"+ message + "`",chat)
                 else:
                     send_message("Week " + str(week) + " does not exist! Please enter an integer between 1 and 13, inclusive.",chat)
-
+                    
             elif text == "/getweek":
                 week = constants.WEEK_TODAY
                 if type(week) == int:
@@ -151,7 +152,7 @@ def handle_updates(updates):
             print("ERROR has occured: ", e)
             print(str(update).encode("utf-8", errors='ignore'))
             print()
-
+        
 
 def main():
     db.setup()
@@ -162,7 +163,6 @@ def main():
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
-            print(updates)
             handle_updates(updates)
         time.sleep(0.5)
 
