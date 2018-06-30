@@ -1,6 +1,6 @@
 # NUS Timetable Coordinator
 
-**Bot token:** Censored
+**Bot token:** 539235421:AAFXpGcd7FUoXowUt6vqC6zbZ3CqrSvhTXA
 
 **bot_username:** nus_timetable_bot
 
@@ -26,7 +26,7 @@ All commands that are available for this chatbot are listed below:
 
 `/start` - Simple text to inform users of the bot functionalities.
 
-Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's funds to last 2.5 months, which will hopefully last until splashdown.
+Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's funds to last 2.5 months, which will hopefully last until splashdown. 
 
 
 
@@ -50,9 +50,9 @@ Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's fun
 
 ## Credits
 
-Made by:
+Made by: 
 
-- [Ang Wei Neng](weineng.io)
+- [Ang Wei Neng](weineng.io) 
 - Peh Yu Xiang
 
 Special thanks to:
