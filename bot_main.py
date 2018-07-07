@@ -160,10 +160,11 @@ def main():
     print("Starting NUSMODS Timetable Coordinator")
     while True:
         updates = get_updates(last_update_id)
-        if len(updates["result"]) > 0:
-            last_update_id = get_last_update_id(updates) + 1
-            print(updates)
-            handle_updates(updates)
+        if "result" in updates: 
+            if len(updates["result"]) > 0:
+                last_update_id = get_last_update_id(updates) + 1
+                print(updates)
+                handle_updates(updates)
         time.sleep(0.5)
 
 def build_keyboard(items):
