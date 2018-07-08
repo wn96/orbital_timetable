@@ -34,17 +34,20 @@ def nusmod_list(filename):
                     del i["LessonType"]
                     del i["ClassNo"]
                     del i["Venue"] #delete venue from list
+                    weird = ("Orientation Week", "Recess Week", 'r', '')
                     if i["WeekText"] == "Every Week":
                         i["WeekText"] = [1,2,3,4,5,6,7,8,9,10,11,12,13]
                     elif i["WeekText"] == "Even Week":
                         i["WeekText"] = [2,4,6,8,10,12]
                     elif i["WeekText"] == "Odd Week": 
                         i["WeekText"] = [1,3,5,7,9,11,13]
+                    elif i["WeekText"] in weird:
+                        i["WeekText"] = []
                     else:
                         try:
                             i["WeekText"] = list(map(lambda x:int(x),(i["WeekText"]).split(",")))
                         except:
-                            i["WeekText"] = list(map(lambda x:int(x),(i["WeekText"][9:]).split(",")))
+                            i["WeekText"] = [1,2,3,4,5,6,7,8,9,10,11,12,13]
                     if key in b:
                         b[key].append(dict(i.items()))
                     else:

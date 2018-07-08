@@ -1,8 +1,6 @@
 # NUS Timetable Coordinator
 
-**Bot token:** 539235421:AAFXpGcd7FUoXowUt6vqC6zbZ3CqrSvhTXA
-
-**bot_username:** nus_timetable_bot
+**bot_username:** [nus_timetable_bot](https://t.me/nus_timetable_bot)
 
 ## Description
 
@@ -44,7 +42,8 @@ Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's fun
 - Current week used for /week is currently hard-coded. To scrap from NUSMods to get week number.
 - Module details are currently downloaded into a huge 42mb file for every semester. To use NUSMods API to get HTTP request for latest JSON file for each module queried.
 - To remove telegram bot token from readme once orbital ended. We can't be bothered to gitignore it. :)
-- Code only works for AY2017/18, Semester 2. To use NUSMods to allow bot to work for all semesters.
+- Code only works for AY2018/19, Semester 1. To use NUSMods to allow bot to work for all semesters.
+- To return error message when wrong AY is provided.
 
 
 
