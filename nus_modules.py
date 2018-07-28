@@ -1,40 +1,23 @@
-<<<<<<< HEAD
-import time, calendar, os
-import requests, json
-=======
 import time
 import calendar
 import os
 import requests
 import json
 
->>>>>>> pr/2
-
 def get_nus_modules_json():
     epoch = calendar.timegm(time.gmtime(0))
     last_fetch = os.path.getmtime("modules.json")
     curr_time = calendar.timegm(time.gmtime())
 
-<<<<<<< HEAD
-    if (curr_time - last_fetch > 432000): # 432000 sec == 5 days
-        curr_month = time.gmtime().tm_mon
-        curr_year = time.gmtime().tm_year - int(curr_month < 7)
-        r = requests.get("https://api.nusmods.com/{}-{}/modules.json".format(curr_year, curr_year+1))
-=======
     if (curr_time - last_fetch > 432000):  # 432000 sec == 5 days
         curr_month = time.gmtime().tm_mon
         curr_year = time.gmtime().tm_year - int(curr_month < 7)
         r = requests.get(
             "https://api.nusmods.com/{}-{}/modules.json".format(curr_year, curr_year + 1))
->>>>>>> pr/2
         with open("modules.json", "w") as file:
             json.dump(r.json(), file)
         return True
     return False
-<<<<<<< HEAD
-=======
-
->>>>>>> pr/2
 
 def nusmod_list(filename):
     '''
@@ -55,10 +38,6 @@ def nusmod_list(filename):
         }#End of all classes for the module
     }#End of module list
     '''
-<<<<<<< HEAD
-    translate={'Tutorial Type 2': "TUT2", 'Recitation': 'REC', 'Packaged Tutorial': 'PTUT', 'Packaged Lecture': 'PLEC', 'Seminar-Style Module Class': "SEM",'Design Lecture': "DLEC", 'Laboratory' : 'LAB', "Lecture" : "LEC", "Tutorial":"TUT", 'Sectional Teaching':"SEC"}
-    lst = ["ModuleCode","Timetable"]
-=======
     translate = {
         'Tutorial Type 2': "TUT2",
         'Recitation': 'REC',
@@ -71,7 +50,6 @@ def nusmod_list(filename):
         "Tutorial": "TUT",
         'Sectional Teaching': "SEC"}
     lst = ["ModuleCode", "Timetable"]
->>>>>>> pr/2
     all_modules = {}
     mods = read_json(filename)
     for i in mods:
@@ -90,15 +68,9 @@ def nusmod_list(filename):
                         i["WeekText"] = [
                             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
                     elif i["WeekText"] == "Even Week":
-<<<<<<< HEAD
-                        i["WeekText"] = [2,4,6,8,10,12]
-                    elif i["WeekText"] == "Odd Week":
-                        i["WeekText"] = [1,3,5,7,9,11,13]
-=======
                         i["WeekText"] = [2, 4, 6, 8, 10, 12]
                     elif i["WeekText"] == "Odd Week":
                         i["WeekText"] = [1, 3, 5, 7, 9, 11, 13]
->>>>>>> pr/2
                     elif i["WeekText"] in weird:
                         i["WeekText"] = []
                     else:
@@ -113,11 +85,7 @@ def nusmod_list(filename):
                     else:
                         b[key] = [i]
                 else:
-<<<<<<< HEAD
-                    print( (tmp["ModuleCode"],i["LessonType"],i))
-=======
                     print((tmp["ModuleCode"], i["LessonType"], i))
->>>>>>> pr/2
 
             all_modules[tmp["ModuleCode"]] = b
     return all_modules
