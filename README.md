@@ -2,6 +2,8 @@
 
 **bot_username:** [nus_timetable_bot](https://t.me/nus_timetable_bot)
 
+Run `pip install -r requirements.txt` prior to deployment.
+
 ## Description
 
 This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.
@@ -24,7 +26,7 @@ All commands that are available for this chatbot are listed below:
 
 `/start` - Simple text to inform users of the bot functionalities.
 
-Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's funds to last 2.5 months, which will hopefully last until splashdown. 
+Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's funds to last 2.5 months, which will hopefully last until splashdown.
 
 
 
@@ -40,18 +42,19 @@ Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's fun
 - [x] Prevent adding of repeated timetables.
 - [x] To remove telegram bot token from readme once orbital ended. We can't be bothered to gitignore it. :)
 - [x] To return error message when wrong AY is provided.
-
+- [x] Allow bot to work for all semesters.
+- [x] Scrap current week from NUSMods for `/week`.
+- [x] Query NUSMods API to get HTTP request for latest JSON file.
 
 ## Refactoring:
 ### These fixes are not done in orbital as they do not affect usability.
-- [ ] Code only works for AY2018/19, Semester 1. To use NUSMods to allow bot to work for all semesters.
-- [ ] Module details are currently downloaded into a huge 42mb file for every semester. To use NUSMods API to get HTTP request for latest JSON file for each module queried.
+
 - [ ] Refactor bot_main.py to use OOP for commands. This should reduce clutters in the code, making the code base unreadable currently.
-- [ ] Current week used for /week is currently hard-coded. To scrap from NUSMods/write an algorithm to get week number.
+
 
 ## Credits
 
-Made by: 
+Made by:
 
 - [Ang Wei Neng](http://weineng.io)
 - Peh Yu Xiang

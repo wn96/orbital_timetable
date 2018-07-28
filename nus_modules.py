@@ -1,4 +1,19 @@
-from mods_lib import *
+import time, calendar, os
+import requests, json
+
+def get_nus_modules_json():
+    epoch = calendar.timegm(time.gmtime(0))
+    last_fetch = os.path.getmtime("modules.json")
+    curr_time = calendar.timegm(time.gmtime())
+
+    if (curr_time - last_fetch > 432000): # 432000 sec == 5 days
+        curr_month = time.gmtime().tm_mon
+        curr_year = time.gmtime().tm_year - int(curr_month < 7)
+        r = requests.get("https://api.nusmods.com/{}-{}/modules.json".format(curr_year, curr_year+1))
+        with open("modules.json", "w") as file:
+            json.dump(r.json(), file)
+        return True
+    return False
 
 def nusmod_list(filename):
     '''
@@ -9,7 +24,7 @@ def nusmod_list(filename):
                 Schedule for that class}
                :
                }
-               
+
             {(class type 2, class code 2):
                 Schedule for that class}
                :
@@ -18,7 +33,7 @@ def nusmod_list(filename):
             :
         }#End of all classes for the module
     }#End of module list
-    ''' 
+    '''
     translate={'Tutorial Type 2': "TUT2", 'Recitation': 'REC', 'Packaged Tutorial': 'PTUT', 'Packaged Lecture': 'PLEC', 'Seminar-Style Module Class': "SEM",'Design Lecture': "DLEC", 'Laboratory' : 'LAB', "Lecture" : "LEC", "Tutorial":"TUT", 'Sectional Teaching':"SEC"}
     lst = ["ModuleCode","Timetable"]
     all_modules = {}
@@ -39,7 +54,7 @@ def nusmod_list(filename):
                         i["WeekText"] = [1,2,3,4,5,6,7,8,9,10,11,12,13]
                     elif i["WeekText"] == "Even Week":
                         i["WeekText"] = [2,4,6,8,10,12]
-                    elif i["WeekText"] == "Odd Week": 
+                    elif i["WeekText"] == "Odd Week":
                         i["WeekText"] = [1,3,5,7,9,11,13]
                     elif i["WeekText"] in weird:
                         i["WeekText"] = []
@@ -54,7 +69,7 @@ def nusmod_list(filename):
                         b[key] = [i]
                 else:
                     print( (tmp["ModuleCode"],i["LessonType"],i))
-                    
+
             all_modules[tmp["ModuleCode"]] = b
     return all_modules
 
