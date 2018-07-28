@@ -44,7 +44,7 @@ def mod_list_student(url):
 def student_schedule(student_mods):
     schedule = []
     for mod in student_mods.keys():
-        mod_timetable = constants.NUS_MODULES[mod]
+        mod_timetable = get_mod_timetable(mod)
         for i in student_mods[mod]:
             if i in mod_timetable.keys():
                 schedule.extend(mod_timetable[i])
