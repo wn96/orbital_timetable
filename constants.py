@@ -2,6 +2,10 @@ STARTTIME = "0600"
 ENDTIME = "2200"
 
 INTERVAL = 30
+
+nus_modules.get_nus_modules_json() # update modules
+NUS_MODULES = nus_modules.nusmod_list("modules.json")
+
 TOKEN = "539235421:AAF_Ckn94vuRqG4EwPeUTLllFfneIVtMGeA"
 
 WEEK_TODAY = 1

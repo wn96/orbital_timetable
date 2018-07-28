@@ -1,21 +1,17 @@
 from mods_lib import *
 import constants
 
-
-def expand_url(url):  # expands nusmods url
+def expand_url(url): # expands nusmods url
     session = requests.Session()  # so connections are recycled
     resp = session.head(url, allow_redirects=True)
     return resp.url
 
-
-# return students schedule in dictionary format: {<modcode>: [(Classtype,
-# no.)]...}
-def mod_list_student(url):
-    def seg(url):  # seperate modules from URL to elements in list
+def mod_list_student(url): # return students schedule in dictionary format: {<modcode>: [(Classtype, no.)]...}
+    def seg(url): # seperate modules from URL to elements in list
         mods = []
         while "?" in url:
             pos = url.index("?")
-            url = url[pos + 1:]
+            url = url[pos+1:]
         while "&" in url:
             pos_am = url.index("&")
             mods.append(url[:pos_am])
@@ -23,26 +19,24 @@ def mod_list_student(url):
         mods.append(url)
         return mods
 
-    expanded_url = expand_url(url)  # Expands URL to show module taken
-    mods = seg(expanded_url)  # list of modules taken, seperated
+    expanded_url = expand_url(url) # Expands URL to show module taken
+    mods = seg(expanded_url) # list of modules taken, seperated
     schedule = {}
     for mod in mods:
         tmp = mod.index("=")
         mod_code = mod[:tmp]
-        mod = mod[tmp + 1:]
+        mod = mod[tmp+1:]
         classes = []
-        block = mod.split(",")
+        block=mod.split(",")
         for i in block:
             tmp2 = tuple((i.split(":")))
             classes.append(tmp2)
         schedule[mod_code] = classes
     return schedule
 
-# Return the list of student classes' timeslot
-
-
+#Return the list of student classes' timeslot
 def student_schedule(student_mods):
-    schedule = []
+    schedule=[]
     for mod in student_mods.keys():
         mod_timetable = get_mod_timetable(mod)
         for i in student_mods[mod]:
