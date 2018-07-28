@@ -61,8 +61,6 @@ def handle_updates(updates):
                     send_message("Please type '/add <NUSMODS link>' to add your timetable.",chat)
                 elif input_url[:len("http://modsn.us/")] != "http://modsn.us/" or check_invalid(input_url):
                     send_message("You have entered an invalid timetable URL!",chat)
-                elif items == db.get_items(chat):
-                    send_message("Timetable has already been added!", chat)
                 else:
                     #Adding from here
                     item = text[5:]

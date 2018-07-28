@@ -1,13 +1,10 @@
-import constants
+from constants import *
 import time
 import calendar
 import os
 import requests
 import json
 
-SEMESTER_HEADER = constants.SEMESTER_HEADER
-WEEK_TODAY = constants.WEEK_TODAY
-SEMESTER_NO = constants.SEMESTER_NO
 
 def get_nus_modules_json():
     # deprecated. Also note JSON located at .../2018-2019/1/modules.json
@@ -86,7 +83,7 @@ def nusmod_list(filename):
                         b[key] = [i]
                 else:
                     print( (tmp["ModuleCode"],i["LessonType"],i))
-    return b
+            return b
 
 #Convert JSON to dictionary
 def read_json(filename):
