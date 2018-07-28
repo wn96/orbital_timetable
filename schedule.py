@@ -3,6 +3,7 @@ from mods_lib import *
 STARTTIME = constants.STARTTIME
 ENDTIME = constants.ENDTIME
 INTERVAL = constants.INTERVAL
+NUS_MODULES = constants.NUS_MODULES
 
 WEEK = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 

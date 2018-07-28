@@ -20,5 +20,3 @@ if importlib.util.find_spec("selenium") is not None:
     WEEK = scrap_week.scrapper()
     if WEEK is not None:
         SEMESTER_HEADER, WEEK_TODAY = WEEK
-        SEMESTER_NO = {"1": 1, "2": 2, "I": 3, "II": 4}\
-            [SEMESTER_HEADER.split(" ")[-1]]

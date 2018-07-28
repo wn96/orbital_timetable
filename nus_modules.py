@@ -7,7 +7,6 @@ import json
 
 
 def get_nus_modules_json():
-    # deprecated. Also note JSON located at .../2018-2019/1/modules.json
     epoch = calendar.timegm(time.gmtime(0))
     last_fetch = os.path.getmtime("modules.json")
     curr_time = calendar.timegm(time.gmtime())
@@ -40,50 +39,60 @@ def nusmod_list(filename):
         }#End of all classes for the module
     }#End of module list
     '''
-    # epoch = calendar.timegm(time.gmtime(0))
-    # last_fetch = os.path.getmtime("modules.json")
-    # curr_time = calendar.timegm(time.gmtime())
-
-    curr_month = time.gmtime().tm_mon
-    curr_year = time.gmtime().tm_year - int(curr_month < 7)
-    # View one month before
-    curr_sem = {7: 1, 12: 2, 5: 3, 6: 4}[curr_month] if curr_month in (7, 12, 5, 6) else SEMESTER_NO
-    translate={'Tutorial Type 2': "TUT2", 'Recitation': 'REC', 'Packaged Tutorial': 'PTUT', 'Packaged Lecture': 'PLEC', 'Seminar-Style Module Class': "SEM",'Design Lecture': "DLEC", 'Laboratory' : 'LAB', "Lecture" : "LEC", "Tutorial":"TUT", 'Sectional Teaching':"SEC"}
-    lst = ["ModuleCode","Timetable"]
+    translate = {
+        'Tutorial Type 2': "TUT2",
+        'Recitation': 'REC',
+        'Packaged Tutorial': 'PTUT',
+        'Packaged Lecture': 'PLEC',
+        'Seminar-Style Module Class': "SEM",
+        'Design Lecture': "DLEC",
+        'Laboratory': 'LAB',
+        "Lecture": "LEC",
+        "Tutorial": "TUT",
+        'Sectional Teaching': "SEC"}
+    lst = ["ModuleCode", "Timetable"]
     all_modules = {}
     mods = read_json(filename)
     for i in mods:
-        tmp = dict(filter(lambda x:x[0] in  lst, tuple(i.items())))
+        tmp = dict(filter(lambda x: x[0] in lst, tuple(i.items())))
         if "Timetable" in tmp.keys():
             a = tmp["Timetable"]
             b = {}
             for i in a:
                 if i["LessonType"] in translate.keys():
-                    key = (translate[i["LessonType"]],i["ClassNo"])
+                    key = (translate[i["LessonType"]], i["ClassNo"])
                     del i["LessonType"]
                     del i["ClassNo"]
-                    del i["Venue"] #delete venue from list
+                    del i["Venue"]  # delete venue from list
                     weird = ("Orientation Week", "Recess Week", 'r', '')
                     if i["WeekText"] == "Every Week":
-                        i["WeekText"] = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+                        i["WeekText"] = [
+                            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
                     elif i["WeekText"] == "Even Week":
-                        i["WeekText"] = [2,4,6,8,10,12]
+                        i["WeekText"] = [2, 4, 6, 8, 10, 12]
                     elif i["WeekText"] == "Odd Week":
-                        i["WeekText"] = [1,3,5,7,9,11,13]
+                        i["WeekText"] = [1, 3, 5, 7, 9, 11, 13]
                     elif i["WeekText"] in weird:
                         i["WeekText"] = []
                     else:
                         try:
-                            i["WeekText"] = list(map(lambda x:int(x),(i["WeekText"]).split(",")))
-                        except:
-                            i["WeekText"] = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+                            i["WeekText"] = list(
+                                map(lambda x: int(x), (i["WeekText"]).split(",")))
+                        except BaseException:
+                            i["WeekText"] = [
+                                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
                     if key in b:
                         b[key].append(dict(i.items()))
                     else:
                         b[key] = [i]
                 else:
-                    print( (tmp["ModuleCode"],i["LessonType"],i))
-            return b
+                    print((tmp["ModuleCode"], i["LessonType"], i))
+
+            all_modules[tmp["ModuleCode"]] = b
+    return all_modules
+
+# Convert JSON to dictionary
+
 
 #Convert JSON to dictionary
 def read_json(filename):
