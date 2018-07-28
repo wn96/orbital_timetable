@@ -1,8 +1,6 @@
 # NUS Timetable Coordinator
 
-**Bot token:** 539235421:AAFXpGcd7FUoXowUt6vqC6zbZ3CqrSvhTXA
-
-**bot_username:** nus_timetable_bot
+**bot_username:** [nus_timetable_bot](https://t.me/nus_timetable_bot)
 
 ## Description
 
@@ -30,29 +28,32 @@ Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's fun
 
 
 
-# Nice Pictures
+## Nice Pictures
 
 ![alt text](./images/screenshot1.png "Logo Title Text 1")
 
-## Bugs/Issues and possible features
+## Bugs/Issues and possible features for Milestone 3
 
-- `/check` command to allow users to see who added the timetable (Dictionary?)
-- Keep poking to check corner cases
-- Exception handling to ensure that program does not terminate on error.
-- Prevent adding of repeated timetables.
-- Refactor bot_main.py to use OOP for commands. This should reduce clutters in the code, making it unreadable currently.
-- Current week used for /week is currently hard-coded. To scrap from NUSMods to get week number.
-- Module details are currently downloaded into a huge 42mb file for every semester. To use NUSMods API to get HTTP request for latest JSON file for each module queried.
-- To remove telegram bot token from readme once orbital ended. We can't be bothered to gitignore it. :)
-- Code only works for AY2017/18, Semester 2. To use NUSMods to allow bot to work for all semesters.
+- [x] `/check` command to allow users to see who added the timetable (Dictionary?)
+- [x] Keep poking to check corner cases
+- [x] Exception handling to ensure that program does not terminate on error.
+- [x] Prevent adding of repeated timetables.
+- [x] To remove telegram bot token from readme once orbital ended. We can't be bothered to gitignore it. :)
+- [x] To return error message when wrong AY is provided.
 
 
+## Refactoring:
+### These fixes are not done in orbital as they do not affect usability.
+- [ ] Code only works for AY2018/19, Semester 1. To use NUSMods to allow bot to work for all semesters.
+- [ ] Module details are currently downloaded into a huge 42mb file for every semester. To use NUSMods API to get HTTP request for latest JSON file for each module queried.
+- [ ] Refactor bot_main.py to use OOP for commands. This should reduce clutters in the code, making the code base unreadable currently.
+- [ ] Current week used for /week is currently hard-coded. To scrap from NUSMods/write an algorithm to get week number.
 
 ## Credits
 
 Made by: 
 
-- [Ang Wei Neng](weineng.io) 
+- [Ang Wei Neng](http://weineng.io)
 - Peh Yu Xiang
 
 Special thanks to:

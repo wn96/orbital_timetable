@@ -60,14 +60,17 @@ def handle_updates(updates):
                 if text == "/add":
                     send_message("Please type '/add <NUSMODS link>' to add your timetable.",chat)
                 elif input_url[:len("http://modsn.us/")] != "http://modsn.us/" or check_invalid(input_url):
-                    send_message("You have entered an invalid timetable URL",chat)
+                    send_message("You have entered an invalid timetable URL!",chat)
+                elif items=db.get_items(chat)
+                    send_message("Timetable has already been added!", chat)
                 else:
                     #Adding from here
                     item = text[5:]
-                    db.add_item(item, chat)
-                    send_message("Timetable has been added", chat)
-            elif text == "/gay":
-                send_message("test", chat, item)
+                    if item in items:
+                        send_message("Timetable has already been added!", chat)
+                    else:
+                        db.add_item(item, chat)
+                        send_message("Timetable has been successfully added!", chat)
 
             elif text == "/list":
                 items=db.get_items(chat) ##
@@ -160,10 +163,11 @@ def main():
     print("Starting NUSMODS Timetable Coordinator")
     while True:
         updates = get_updates(last_update_id)
-        if len(updates["result"]) > 0:
-            last_update_id = get_last_update_id(updates) + 1
-            print(updates)
-            handle_updates(updates)
+        if "result" in updates: 
+            if len(updates["result"]) > 0:
+                last_update_id = get_last_update_id(updates) + 1
+                print(updates)
+                handle_updates(updates)
         time.sleep(0.5)
 
 def build_keyboard(items):
