@@ -44,7 +44,7 @@ def handle_updates(updates):
             items = db.get_items(chat)  ##
             if text == "/start":
                 send_message("This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.\
-\n\nTry now by going to https://nusmods.com and get your URL from Share/Sync. type /add <URL> into the chat box. You may add as many timetables as you like. Note that this timetable is only available for AY17/18 Semester II.\
+\n\nTry now by going to https://nusmods.com and get your URL from Share/Sync. type /add <URL> into the chat box. You may add as many timetables as you like. Note that this timetable is currently only available for AY18/19 Semester I.\
 \n\nAll commands that are available for this chatbot are listed below:\n\
 /add <url> - Allows user to add modules.\n\
 /list - Check what are the current url added to the group.\n\
