@@ -28,7 +28,8 @@ All commands that are available for this chatbot are listed below:
 
 Bot is currently hosted on a 1024 MB Server running on Ubuntu 18.04. There's funds to last 2.5 months, which will hopefully last until splashdown.
 
-
+## Guide to using the bot
+To use the bot, go to [nus_timetable_bot](https://t.me/nus_timetable_bot) and press start. Commands available will be populated. Add your timetable using /add <nusmods timetable>. To generate mutual free time, type /week (week_number). If no arguments is provided, timeslot for mutual free time for current week will be generated.
 
 ## Nice Pictures
 
@@ -61,7 +62,6 @@ Made by:
 
 Special thanks to:
 
-- Li Pengcheng (Mentor)
 - The NUS Orbital team for the opportunity to build our app for credits
 
 - [Gareth Dwyer](https://www.codementor.io/garethdwyer/building-a-telegram-bot-using-python-part-1-goi5fncay) for the tutorial on how to make a simple telegram bot.

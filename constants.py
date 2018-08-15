@@ -14,9 +14,3 @@ SEMESTER_HEADER = "AY2018/19, Semester 1"
 
 SEMESTER_NO = 1
 
-import importlib
-if importlib.util.find_spec("selenium") is not None:
-    import scrap_week
-    WEEK = scrap_week.scrapper()
-    if WEEK is not None:
-        SEMESTER_HEADER, WEEK_TODAY = WEEK
