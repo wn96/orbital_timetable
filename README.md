@@ -1,5 +1,7 @@
 # NUS Timetable Coordinator
 
+[![CircleCI Build Status](https://circleci.com/gh/wn96/wn96.svg?style=shield)](https://circleci.com/gh/wn96/master)
+
 **bot_username:** [nus_timetable_bot](https://t.me/nus_timetable_bot)
 
 Run `pip install -r requirements.txt` prior to deployment.
