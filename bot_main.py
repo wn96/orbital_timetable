@@ -1,8 +1,8 @@
 import json
 import time
 import urllib
-import requests
-from mods_lib import *
+import mods_lib
+import schedule
 from dbhelper import DBHelper
 import constants
 
@@ -15,7 +15,7 @@ def get_updates(offset=None):
         url = URL + "getUpdates"
         if offset:
             url += "?offset={}".format(offset)
-        js = get_json_from_url(url)
+        js = mods_lib.get_json_from_url(url)
         return js
     except Exception as e:
         print("ERROR HAS OCCURED IN GET_UPDATES", e)
@@ -25,10 +25,10 @@ def send_message(text, chat_id, reply_markup=None):
     url = URL + "sendMessage?text={}&chat_id={}&parse_mode=Markdown".format(text, chat_id)
     if reply_markup:
         url += "&reply_markup={}".format(reply_markup)
-    get_url(url)
+    mods_lib.get_url(url)
 
 def check_invalid(url):
-    return expand_url(url) == "http://modsn.us" or expand_url(url) == "http://modsn.us/"
+    return mods_lib.expand_url(url) == "http://modsn.us" or mods_lib.expand_url(url) == "http://modsn.us/"
 
 def handle_updates(updates):
     try:
@@ -127,13 +127,13 @@ def handle_updates(updates):
 
                     result = None
                     for i in items:
-                        result = compare_tt(result, get_freetime(i, week))
-                    result = view_improve(result)
+                        result = schedule.compare_tt(result, schedule.get_freetime(i, week))
+                    result = schedule.view_improve(result)
                     counter = 0
                     message=""
                     message += constants.SEMESTER_HEADER + "\nAvailable Slots\n   ~Week " + str(week) + "~\n---------------\n"
                     for week in result:
-                        message += "\n-" + WEEK[counter % len(WEEK)] + "-\n"
+                        message += "\n-" + schedule.WEEK[counter % len(schedule.WEEK)] + "-\n"
                         counter += 1
                         for timing in week:
                             message += timing + "\n"
@@ -157,13 +157,12 @@ def handle_updates(updates):
 def main():
     db.setup()
     last_update_id = None
-    users_add = list()
     print("Starting NUSMODS Timetable Coordinator")
     while True:
         updates = get_updates(last_update_id)
         if "result" in updates:
             if len(updates["result"]) > 0:
-                last_update_id = get_last_update_id(updates) + 1
+                last_update_id = mods_lib.get_last_update_id(updates) + 1
                 print(updates)
                 handle_updates(updates)
         time.sleep(0.5)

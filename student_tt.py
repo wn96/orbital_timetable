@@ -1,10 +1,5 @@
-from mods_lib import *
+import mods_lib
 import constants
-
-def expand_url(url): # expands nusmods url
-    session = requests.Session()  # so connections are recycled
-    resp = session.head(url, allow_redirects=True)
-    return resp.url
 
 def mod_list_student(url): # return students schedule in dictionary format: {<modcode>: [(Classtype, no.)]...}
     def seg(url): # seperate modules from URL to elements in list
@@ -19,7 +14,7 @@ def mod_list_student(url): # return students schedule in dictionary format: {<mo
         mods.append(url)
         return mods
 
-    expanded_url = expand_url(url) # Expands URL to show module taken
+    expanded_url = mods_lib.expand_url(url) # Expands URL to show module taken
     mods = seg(expanded_url) # list of modules taken, seperated
     schedule = {}
     for mod in mods:

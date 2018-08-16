@@ -1,12 +1,5 @@
 import json
-import time
-import urllib
 import requests
-from dbhelper import DBHelper
-from student_tt import *
-from nus_modules import *
-from schedule import *
-from dbhelper import DBHelper
 
 def expand_url(url): # expands nusmods url
     session = requests.Session()  # so connections are recycled

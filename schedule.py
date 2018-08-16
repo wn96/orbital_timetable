@@ -1,4 +1,5 @@
-from mods_lib import *
+import constants
+import student_tt
 
 STARTTIME = constants.STARTTIME
 ENDTIME = constants.ENDTIME
@@ -10,9 +11,9 @@ WEEK = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 def get_freetime(url, week):
     '''returns dictionary of [odd/even][day][time] of when student is free,
         in boolean'''
-    return free_time(student_schedule(mod_list_student(url)), week)
+    return free_time(student_tt.student_schedule(student_tt.mod_list_student(url)), week)
 
-def blank_schedule(): 
+def blank_schedule():
     '''returns dictionary of [day][time] == True'''
     tmp = {}
     for day in WEEK:
@@ -71,8 +72,7 @@ def viewer(schedule):
 
 def view_improve(schedule):
     tmp = viewer(schedule)
-    out = []
-    result=[]
+    result = []
     for day in tmp:
         nice=[]
         start = STARTTIME
@@ -82,22 +82,22 @@ def view_improve(schedule):
         for time in day:
             if is_time_after(end, time) == True:
                 end = time
-                
+
             else:
-                endtime = time_24(str(increase(end,INTERVAL)))
+                endtime = time_24(str(increase(end, INTERVAL)))
                 starttime = time_24(str(start))
                 addon = starttime + " ~ " + endtime
                 nice.append(addon)
                 start = time
                 end = time
-        
+
         endtime = time_24(str(increase(end,INTERVAL)))
         starttime = time_24(str(start))
         addon = starttime + " ~ " + endtime
         nice.append(addon)
         result.append(nice)
     return result
-            
+
 def time_24(time):
     if time == "2400":
         return "0000"
@@ -140,6 +140,6 @@ def increase(time,duration): #add duration to time
         time += 100
         time = str(time)
         return increase(time,duration)
-        
+
 #mymods = get_freetime(url) # return modules taken by student
 #matt_mods = get_freetime(url_matt)

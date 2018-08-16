@@ -1,4 +1,3 @@
-from constants import *
 import time
 import calendar
 import os
@@ -7,7 +6,6 @@ import json
 
 
 def get_nus_modules_json():
-    epoch = calendar.timegm(time.gmtime(0))
     last_fetch = os.path.getmtime("modules.json")
     curr_time = calendar.timegm(time.gmtime())
 
