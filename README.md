@@ -1,6 +1,6 @@
 # NUS Timetable Coordinator
 
-[![CircleCI Build Status](https://circleci.com/gh/wn96/wn96.svg?style=shield)](https://circleci.com/gh/wn96/master)
+[![CircleCI](https://circleci.com/gh/wn96/orbital_timetable/tree/master.svg?style=shield)](https://circleci.com/gh/wn96/orbital_timetable/tree/master)
 
 **bot_username:** [nus_timetable_bot](https://t.me/nus_timetable_bot)
 
@@ -48,12 +48,6 @@ To use the bot, go to [nus_timetable_bot](https://t.me/nus_timetable_bot) and pr
 - [x] Allow bot to work for all semesters.
 - [x] Scrap current week from NUSMods for `/week`.
 - [x] Query NUSMods API to get HTTP request for latest JSON file.
-
-## Refactoring:
-### These fixes are not done in orbital as they do not affect usability.
-
-- [ ] Refactor bot_main.py to use OOP for commands. This should reduce clutters in the code, making the code base unreadable currently.
-
 
 ## Credits
 
