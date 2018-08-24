@@ -1,2 +1,3 @@
 pyflakes
 request
+python-coveralls
