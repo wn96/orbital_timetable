@@ -1,6 +1,9 @@
 # NUS Timetable Coordinator
 
 [![CircleCI](https://circleci.com/gh/wn96/orbital_timetable/tree/master.svg?style=shield)](https://circleci.com/gh/wn96/orbital_timetable/tree/master)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
+![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+
 
 **bot_username:** [nus_timetable_bot](https://t.me/nus_timetable_bot)
 
