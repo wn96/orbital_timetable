@@ -72,7 +72,7 @@ def handle_updates(updates):
 
             elif text == "/list":
                 items=db.get_items(chat) ##
-                stuff="These are the URLs added:\n "
+                stuff="These are the URLs added:\n"
                 counter = 1
                 if len(items) == 0:
                     send_message("There are no timetables added to the chat yet",chat)
