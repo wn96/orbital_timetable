@@ -82,6 +82,12 @@ def handle_updates(updates):
                         counter += 1
                     send_message(stuff,chat)
 
+            elif text == "/goodbot":
+                if 'first_name' in update:
+                    send_message("Thanks " + update[first_name] + '!',chat)
+                else:
+                    send_message("Thanks!',chat)
+
 
             elif text == "/clear":
                 items=db.get_items(chat) ##
