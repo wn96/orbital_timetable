@@ -88,6 +88,9 @@ def handle_updates(updates):
                 else:
                     send_message("Thanks!", chat)
 
+            elif text == "/david":
+                send_message("David da' best!", chat)
+
 
             elif text == "/clear":
                 items=db.get_items(chat) ##
