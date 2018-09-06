@@ -86,7 +86,7 @@ def handle_updates(updates):
                 if 'first_name' in update:
                     send_message("Thanks " + update[first_name] + '!',chat)
                 else:
-                    send_message("Thanks!',chat)
+                    send_message("Thanks!", chat)
 
 
             elif text == "/clear":
