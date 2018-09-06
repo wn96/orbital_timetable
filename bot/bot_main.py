@@ -83,8 +83,8 @@ def handle_updates(updates):
                     send_message(stuff,chat)
 
             elif text == "/goodbot":
-                if 'first_name' in update:
-                    send_message("Thanks " + update[first_name] + '!',chat)
+                if 'first_name' in update['message']['from']:
+                    send_message("Thanks " + update['message']['from']['first_name'] + '!',chat)
                 else:
                     send_message("Thanks!", chat)
 
