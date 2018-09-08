@@ -34,33 +34,39 @@ def handle_updates(updates):
     try:
         for update in updates["result"]:
             if "message" not in update:
-                continue
+                send_message("`message` not in update", -1001208501380)
             if "chat" not in update["message"]:
-                continue
+                send_message("`chat` not in message", -1001208501380)
             if "text" not in update["message"]:
-                continue
+                send_message("`test` not in message", -1001208501380)
             chat = update["message"]["chat"]["id"]
             text = update["message"]["text"]
-            items = db.get_items(chat)  ##
+            text = text.replace("@nus_timetable_bot", '')
+            items = db.get_items(chat)
+            send_message(str(update).encode("utf-8", errors='ignore'), -1001208501380)
             if text == "/start":
-                send_message("This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.\
-\n\nTry now by going to https://nusmods.com and get your URL from Share/Sync. type /add <URL> into the chat box. You may add as many timetables as you like. Note that this timetable is currently only available for AY18/19 Semester I.\
-\n\nAll commands that are available for this chatbot are listed below:\n\
-/add <url> - Allows user to add modules.\n\
-/list - Check what are the current url added to the group.\n\
-/week <week number>- Returns a schedule of input week that indicates when all members are available.\n\
-/del <url> - Allows user to delete modules.\n\
-/clear - Delete all timetable added\n\
-/getweek - Returns the week number of the semester\n\
-/start - This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.",chat)
+                send_message("This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.\n\
+\n\
+Try now by going to https://nusmods.com and get your URL from Share/Sync. type /add <URL> into the chat box. You may add as many timetables as you like. Note that this timetable is currently only available for AY18/19 Semester I.\n\
+\n\
+All commands that are available for this chatbot are listed below:\n\
+`/help` - Get information on how to use the bot.\n\
+`/add` <url> - Allows user to add modules.\n\
+`/list` - Check what are the current url added to the group.\n\
+`/week` <default = week number>- Returns a schedule of input week that indicates when all members are available.\n\
+`/del` <url> - Allows user to delete modules.\n\
+`/clear` - Delete all timetable added\n\
+`/getweek` - Returns the week number of the semester\n\
+`/start` - This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.\n\n\
+Contact me at @ahahalala for support or suggestions!", chat)
 
             elif text[:4] == "/add":
                 input_url = text[5:]
                 #Exception Handling
                 if text == "/add":
-                    send_message("Please type '/add <NUSMODS link>' to add your timetable.",chat)
+                    send_message("Please type '/add <NUSMODS link>' to add your timetable.\nEg: /add http://modsn.us/I2F07", chat)
                 elif input_url[:len("http://modsn.us/")] != "http://modsn.us/" or check_invalid(input_url):
-                    send_message("You have entered an invalid timetable URL!",chat)
+                    send_message("You have entered an invalid timetable URL!\nEg: /add http://modsn.us/I2F07", chat)
                 else:
                     #Adding from here
                     item = text[5:]
@@ -75,7 +81,7 @@ def handle_updates(updates):
                 stuff="These are the URLs added:\n"
                 counter = 1
                 if len(items) == 0:
-                    send_message("There are no timetables added to the chat yet",chat)
+                    send_message("There are no timetables added to the chat yet!",chat)
                 else:
                     for i in items:
                         stuff += str(counter) + ". " + i + "\n"
@@ -87,10 +93,6 @@ def handle_updates(updates):
                     send_message("Thanks " + update['message']['from']['first_name'] + '!',chat)
                 else:
                     send_message("Thanks!", chat)
-
-            elif text == "/david":
-                send_message("David da' best!", chat)
-
 
             elif text == "/clear":
                 items=db.get_items(chat) ##
@@ -105,14 +107,22 @@ def handle_updates(updates):
                 items=db.get_items(chat)
                 todel = text[5:]
                 if text == "/del":
-                    send_message("Please type '/del <NUSMODS link>' to delete the timetable.",chat)
+                    send_message("Please type '/del <NUSMODS link>' to delete the timetable.\nEg: http://modsn.us/I2F07",chat)
                 elif todel[:len("http://modsn.us/")] != "http://modsn.us/":
-                    send_message("You have entered an invalid timetable URL",chat)
+                    send_message("You have entered an invalid timetable URL!",chat)
                 elif todel in items:
                     db.delete_item(todel,chat)
-                    send_message("<"+ todel + "> has been deleted",chat)
+                    send_message("<"+ todel + "> has been deleted!",chat)
                 else:
-                    send_message("This timetable has not been added yet", chat)
+                    send_message("This timetable has not been added yet!", chat)
+
+            elif text == "/help":
+                send_message("How to use this bot:\n\
+1. Add your timetable - `Eg: /add http://modsn.us/I2F07`\n\
+2.(Optional) Check that it is added - `/list`\n\
+3. Get free time - `/week` or `/week <week number>`\n\
+\n\
+Contact me at @ahahalala for either support or suggestions. I am friendly!", chat)
 
 
             elif text[:5] == "/week":
@@ -124,7 +134,7 @@ def handle_updates(updates):
                         send_message("There is no school during " + constants.WEEK_TODAY + "!", chat)
                         continue
                 elif week.isdigit() == False:
-                    send_message(week + " is an invalid week", chat)
+                    send_message(week + " is an invalid week!", chat)
                     continue
                 week = int(week)
                 if week <= 13 and week >= 0: # 0 <= week <= 13
@@ -148,17 +158,18 @@ def handle_updates(updates):
                             message += timing + "\n"
                     send_message("`"+ message + "`",chat)
                 else:
-                    send_message("Week " + str(week) + " does not exist! Please enter an integer between 1 and 13, inclusive.",chat)
+                    send_message("Week " + str(week) + " does not exist! Please enter an integer between 1 and 13, inclusive.", chat)
 
             elif text == "/getweek":
                 week = constants.WEEK_TODAY
                 if type(week) == int:
-                    send_message("`Currently week " + str(week) + "`" ,chat)
+                    send_message("`Currently week " + str(week) + "`" , chat)
                 else:
-                    send_message("`Currently " + week + "`" ,chat)
+                    send_message("`Currently " + week + "`" , chat)
     except Exception as e:
-            send_message("An error has occured! Please try again. If the problem persist, please email support at weineng.a@gmail.com!",chat)
+            send_message("An error has occured! Please try again. If the problem persist, please email support at weineng.a@gmail.com!", chat)
             print("ERROR has occured: ", e)
+            send_message("ERROR HAS OCCURED: " + str(update).encode("utf-8", errors='ignore'), -1001208501380)
             print(str(update).encode("utf-8", errors='ignore'))
             print()
 
