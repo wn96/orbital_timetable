@@ -42,7 +42,6 @@ def handle_updates(updates):
             chat = update["message"]["chat"]["id"]
             text = update["message"]["text"]
             text = text.replace("@nus_timetable_bot", '')
-            items = db.get_items(chat)
             send_message(str(update).encode("utf-8", errors='ignore'), -1001208501380)
             if text == "/start":
                 send_message("This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.\n\
@@ -61,6 +60,7 @@ All commands that are available for this chatbot are listed below:\n\
 Contact me at @ahahalala for support or suggestions!", chat)
 
             elif text[:4] == "/add":
+                items=db.get_items(chat)
                 input_url = text[5:]
                 #Exception Handling
                 if text == "/add":
@@ -72,13 +72,15 @@ Contact me at @ahahalala for support or suggestions!", chat)
                     item = text[5:]
                     if item in items:
                         send_message("Timetable has already been added!", chat)
+                    elif len(item) >= 15:
+                        send_message("You have added too much timetable!", chat)
                     else:
                         db.add_item(item, chat)
                         send_message("Timetable has been successfully added!", chat)
 
             elif text == "/list":
-                items=db.get_items(chat) ##
-                stuff="These are the URLs added:\n"
+                items = db.get_items(chat) ##
+                stuff = "These are the URLs added:\n"
                 counter = 1
                 if len(items) == 0:
                     send_message("There are no timetables added to the chat yet!",chat)
