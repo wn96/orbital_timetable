@@ -34,11 +34,11 @@ def handle_updates(updates):
     try:
         for update in updates["result"]:
             if "message" not in update:
-                send_message("`message` not in update", -1001208501380)
+                continue
             if "chat" not in update["message"]:
-                send_message("`chat` not in message", -1001208501380)
+                continue
             if "text" not in update["message"]:
-                send_message("`test` not in message", -1001208501380)
+                continue
             chat = update["message"]["chat"]["id"]
             text = update["message"]["text"]
             text = text.replace("@nus_timetable_bot", '')
