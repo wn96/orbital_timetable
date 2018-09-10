@@ -72,7 +72,7 @@ Contact me at @ahahalala for support or suggestions!", chat)
                     item = text[5:]
                     if item in items:
                         send_message("Timetable has already been added!", chat)
-                    elif len(item) >= 15:
+                    elif len(items) >= 15:
                         send_message("You have added too much timetable!", chat)
                     else:
                         db.add_item(item, chat)
