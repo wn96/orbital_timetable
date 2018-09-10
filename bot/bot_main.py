@@ -42,7 +42,6 @@ def handle_updates(updates):
             chat = update["message"]["chat"]["id"]
             text = update["message"]["text"]
             text = text.replace("@nus_timetable_bot", '')
-            send_message(str(update).encode("utf-8", errors='ignore'), -1001208501380)
             if text == "/start":
                 send_message("This bot allow groups to add their timetable to the chat. The chatbot will then inform groups of timings where members are mutually available.\n\
 \n\
@@ -168,6 +167,7 @@ Contact me at @ahahalala for either support or suggestions. I am friendly!", cha
                     send_message("`Currently week " + str(week) + "`" , chat)
                 else:
                     send_message("`Currently " + week + "`" , chat)
+            send_message(str(update).encode("utf-8", errors='ignore'), -1001208501380)
     except Exception as e:
             send_message("An error has occured! Please try again. If the problem persist, please email support at weineng.a@gmail.com!", chat)
             print("ERROR has occured: ", e)
