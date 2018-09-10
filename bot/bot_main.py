@@ -171,7 +171,7 @@ Contact me at @ahahalala for either support or suggestions. I am friendly!", cha
     except Exception as e:
             send_message("An error has occured! Please try again. If the problem persist, please email support at weineng.a@gmail.com!", chat)
             print("ERROR has occured: ", e)
-            send_message("ERROR HAS OCCURED: " + str(update).encode("utf-8", errors='ignore'), -1001208501380)
+            send_message("ERROR HAS OCCURED", -1001208501380)
             print(str(update).encode("utf-8", errors='ignore'))
             print()
 
