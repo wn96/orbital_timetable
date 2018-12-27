@@ -63,9 +63,9 @@ Contact me at @ahahalala for support or suggestions!", chat)
                 input_url = text[5:]
                 #Exception Handling
                 if text == "/add":
-                    send_message("Please type '/add <NUSMODS link>' to add your timetable.\nEg: /add http://modsn.us/I2F07", chat)
+                    send_message("Please type '/add <NUSMODS link>' to add your timetable.\nEg: /add http://modsn.us/JVMSf", chat)
                 elif input_url[:len("http://modsn.us/")] != "http://modsn.us/" or check_invalid(input_url):
-                    send_message("You have entered an invalid timetable URL!\nEg: /add http://modsn.us/I2F07", chat)
+                    send_message("You have entered an invalid timetable URL!\nEg: /add http://modsn.us/JVMSf", chat)
                 else:
                     #Adding from here
                     item = text[5:]
@@ -119,7 +119,7 @@ Contact me at @ahahalala for support or suggestions!", chat)
 
             elif text == "/help":
                 send_message("How to use this bot:\n\
-1. Add your timetable - `Eg: /add http://modsn.us/I2F07`\n\
+1. Add your timetable - `Eg: /add http://modsn.us/JVMSf`\n\
 2.(Optional) Check that it is added - `/list`\n\
 3. Get free time - `/week` or `/week <week number>`\n\
 \n\
