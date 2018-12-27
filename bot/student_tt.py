@@ -33,8 +33,8 @@ def mod_list_student(url): # return students schedule in dictionary format: {<mo
 def student_schedule(student_mods):
     schedule=[]
     for mod in student_mods.keys():
-        mod_timetable = constants.NUS_MODULES[mod]
-        for i in student_mods[mod]:
-            if i in mod_timetable.keys():
+        if mod in constants.NUS_MODULES:
+            mod_timetable = constants.NUS_MODULES[mod]
+            for i in student_mods[mod]:
                 schedule.extend(mod_timetable[i])
     return schedule
