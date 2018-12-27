@@ -19,8 +19,8 @@ def blank_schedule():
     for day in WEEK:
         time = []
         timing = STARTTIME
-        timeslot = time_diff(STARTTIME,ENDTIME)
-        for min30 in range(timeslot):
+        timeslot = time_diff(STARTTIME, ENDTIME)
+        for _ in range(timeslot):
             time.append(timing)
             timing = increase(timing,INTERVAL)
         tmp[day] = dict(map(lambda x: (x, True), time))
